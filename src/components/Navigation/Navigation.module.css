@@ -1,0 +1,19 @@
+.nav {
+  padding: 16px;
+  background-color: #222;
+}
+
+.link {
+  color: #ccc;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.activeLink {
+  color: #fff;
+  text-decoration: underline;
+}

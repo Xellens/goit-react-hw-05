@@ -1,0 +1,25 @@
+.container {
+  padding: 16px;
+}
+
+.goBackBtn {
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.details {
+  display: flex;
+  gap: 16px;
+}
+
+.poster {
+  width: 300px;
+}
+
+.additional {
+  margin-top: 16px;
+}
+
+.link {
+  color: #0077cc;
+}
