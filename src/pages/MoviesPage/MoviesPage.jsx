@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import Loader from "../../components/Loader/Loader";
 import MovieList from "../../components/MovieList/MovieList";
 import s from "./MoviesPage.module.css";
 
@@ -14,7 +15,6 @@ function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [inputValue, setInputValue] = useState(currentQuery);
 
   useEffect(() => {
@@ -24,6 +24,10 @@ function MoviesPage() {
     }
 
     const fetchMovies = async () => {
+      setLoading(true);
+      setError(null);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       try {
         setLoading(true);
         setError(null);
@@ -38,7 +42,13 @@ function MoviesPage() {
           }
         );
 
-        setMovies(resp.data.results);
+        const fetchedMovies = resp.data.results;
+
+        if (fetchedMovies.length === 0) {
+          setError(`No results found for "${currentQuery}"`);
+        } else {
+          setMovies(fetchedMovies);
+        }
       } catch (err) {
         console.error("Error searching movies:", err);
         setError("Failed to fetch movies. Please try again later.");
@@ -56,20 +66,17 @@ function MoviesPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!inputValue.trim()) {
       setSearchParams({});
       setMovies([]);
       return;
     }
-
     setSearchParams({ query: inputValue });
   };
 
   return (
     <div className={s.container}>
       <h2 className={s.title}>Search movies</h2>
-
       <form onSubmit={handleSubmit} className={s.form}>
         <input
           type="text"
@@ -85,11 +92,7 @@ function MoviesPage() {
 
       {error && <p className={s.error}>{error}</p>}
 
-      {loading && (
-        <div className={s.loader}>
-          <p>Loading...</p>
-        </div>
-      )}
+      {loading && <Loader />}
 
       {!loading && !error && movies.length > 0 && <MovieList movies={movies} />}
     </div>
