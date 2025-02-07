@@ -1,25 +1,52 @@
 .container {
-  padding: 16px;
+  padding: 24px;
+  min-height: 100vh;
 }
 
 .goBackBtn {
-  margin-bottom: 16px;
+  padding: 8px 16px;
+  background-color: #3d3d3d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  margin-bottom: 24px;
+  transition: background-color 0.2s ease;
+}
+.goBackBtn:hover {
+  background-color: #555;
 }
 
 .details {
   display: flex;
-  gap: 16px;
+  gap: 24px;
+  margin-bottom: 24px;
 }
 
 .poster {
   width: 300px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .additional {
-  margin-top: 16px;
+  margin-top: 24px;
+  border-top: 1px solid #444;
+  padding-top: 16px;
 }
 
 .link {
-  color: #0077cc;
+  color: #77afff;
+  margin-right: 16px;
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
 }

@@ -1,8 +1,24 @@
 .container {
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px);
+  gap: 16px;
   text-align: center;
 }
 
+.title {
+  font-size: 48px;
+  font-weight: 600;
+}
+
 .link {
-  color: #007acc;
+  color: #ff5252;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
 }
